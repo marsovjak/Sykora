@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -45,7 +46,7 @@ public class ExcelManager {
 				final XSSFSheet sheet = workbook.getSheetAt(0);
 				
 				// get first row of the sheet
-				final Row firstRow = sheet.getRow(0);
+				final XSSFRow firstRow = sheet.getRow(0);
 				
 				// get column index where the data are by title
 				int columnIndex = this.getColumnIndexByTitle(firstRow, title);
@@ -89,7 +90,7 @@ public class ExcelManager {
 	}
 
 	/** Gets index of a column where in the first row the value of the cell is equal to title */
-	protected int getColumnIndexByTitle(Row row, String title) {
+	protected int getColumnIndexByTitle(XSSFRow row, String title) {
 		
 		int columnIndex = 0;
 		

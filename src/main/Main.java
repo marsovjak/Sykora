@@ -1,24 +1,28 @@
 package main;
 
-import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import excelManager.ExcelManager;
 
 /** Main class for running the application. */
 public class Main {
 
+	/** Logger */
+	protected static Logger logger = LogManager.getLogger(Main.class);
+	
 	public static void main(String[] args) {
 		
-		System.out.println("Enter a valid path of the target file.");
-		final Scanner inScanner = new Scanner(System.in);
+		if (args.length == 0) {
+			logger.error("There are no arguments for the file path. Exiting the program.");
+			
+			System.exit(1);
+		}
 		
-		String filePath = inScanner.nextLine();
+		String filePath = args[0];
 		
 		ExcelManager excelManager = new ExcelManager(filePath);
-		
 		excelManager.printPrimesFromColumn("Data");
-
-		inScanner.close();
 		
 		System.exit(0);
 	}
